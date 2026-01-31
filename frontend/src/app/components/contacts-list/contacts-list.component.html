@@ -1,0 +1,41 @@
+<div class="max-w-3xl mx-auto mt-10">
+
+  <div class="flex justify-between items-center mb-6">
+    <h2 class="text-2xl font-bold text-gray-800">Liste des contacts</h2>
+
+    <button 
+      class="bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition"
+      [routerLink]="['/contacts/add']">
+      + Ajouter un contact
+    </button>
+  </div>
+
+  <ul class="space-y-4">
+    <li 
+      *ngFor="let c of contacts"
+      class="bg-white shadow rounded-lg p-4 flex justify-between items-center"
+    >
+      <div>
+        <p class="text-lg font-semibold text-gray-800">
+          {{ c.first_name }} {{ c.last_name }}
+        </p>
+        <p class="text-gray-500">{{ c.email }}</p>
+      </div>
+
+      <div class="flex gap-3">
+        <button 
+          class="bg-green-500 text-white px-3 py-1 rounded hover:bg-green-600 transition"
+          [routerLink]="['/contacts/edit', c.id!]">
+          Modifier
+        </button>
+
+        <button 
+          class="bg-red-500 text-white px-3 py-1 rounded hover:bg-red-600 transition"
+          (click)="delete(c.id!)">
+          Supprimer
+        </button>
+      </div>
+    </li>
+  </ul>
+
+</div>
