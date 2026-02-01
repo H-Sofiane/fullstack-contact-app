@@ -3,4 +3,5 @@ djangorestframework
 gunicorn
 psycopg[binary]
 django-cors-headers
+dj-database-url
 

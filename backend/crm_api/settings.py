@@ -76,18 +76,31 @@ WSGI_APPLICATION = 'crm_api.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+#import os
+
+#DATABASES = {
+#    "default": {
+#        "ENGINE": "django.db.backends.postgresql",
+#        "NAME": os.environ.get("DB_NAME"),
+#        "USER": os.environ.get("DB_USER"),
+#        "PASSWORD": os.environ.get("DB_PASSWORD"),
+#        "HOST": os.environ.get("DB_HOST"),
+#        "PORT": 5432,
+#    }
+#}
+
+
+import dj_database_url
 import os
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.environ.get("DB_NAME"),
-        "USER": os.environ.get("DB_USER"),
-        "PASSWORD": os.environ.get("DB_PASSWORD"),
-        "HOST": os.environ.get("DB_HOST"),
-        "PORT": 5432,
-    }
+    'default': dj_database_url.config(
+        default=os.environ.get("DATABASE_URL"),
+        conn_max_age=600,
+        ssl_require=True
+    )
 }
+
 
 
 
